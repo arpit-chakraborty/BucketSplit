@@ -377,6 +377,7 @@ export async function getBucketSummary(bucketId: string): Promise<BucketSummary>
     balances.push({
       counterpartId,
       counterpartName: cp?.name ?? null,
+      counterpartImage: null,
       netCents,
     });
   }

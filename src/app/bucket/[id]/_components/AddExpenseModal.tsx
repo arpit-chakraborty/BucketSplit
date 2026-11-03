@@ -91,7 +91,7 @@ export default function AddExpenseModal({
   }
 
   const displayName = (m: BucketMemberInfo) =>
-    m.name ?? m.email ?? m.userId.slice(0, 8);
+    m.name ?? m.userId.slice(0, 8);
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>

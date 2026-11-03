@@ -1,7 +1,7 @@
 export type PairwiseBalance = {
   counterpartId: string;
   counterpartName: string | null;
-  counterpartImage: string | null;
+  counterpartImage?: string | null;
   netCents: number;
 };
 

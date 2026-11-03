@@ -4,8 +4,14 @@ import { client, ensureDbTables } from "@/db";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  if (process.env.NODE_ENV === "production" && process.env.ALLOW_DB_RESET !== "true") {
+    return NextResponse.json(
+      { error: "Database reset is disabled in production for security." },
+      { status: 403 }
+    );
+  }
+
   try {
-    // Drop all tables and dependencies
     await client.unsafe(`
       DROP TABLE IF EXISTS "notification" CASCADE;
       DROP TABLE IF EXISTS "settlement" CASCADE;
@@ -16,7 +22,6 @@ export async function GET() {
       DROP TABLE IF EXISTS "user" CASCADE;
     `);
 
-    // Recreate clean schema
     await ensureDbTables();
 
     return NextResponse.json({

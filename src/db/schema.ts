@@ -12,8 +12,8 @@ import {
 export const users = pgTable("user", {
   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   username: text("username").notNull().unique(),
-  passwordHash: text("password_hash").notNull(),
   name: text("name"),
+  passwordHash: text("password_hash").notNull()
 });
 
 export const buckets = pgTable("bucket", {
